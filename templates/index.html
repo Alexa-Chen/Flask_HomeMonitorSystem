@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Raspberry Pi监控系统</title>
+<script type="text/javascript" src="./static/js/jquery-1.12.0.js"></script>
+<script type="text/javascript">
+var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+<script type="text/javascript">
+$(function(){
+ setInterval(aa,10);
+ function aa(){
+ }
+});
+</script>
+
+</head>
+<style type="text/css">
+#image{
+	position: absolute;
+	z-index: -1;
+	top: 300px;
+	left: 400px;
+	}
+#temperature{
+	position: absolute;
+	z-index: 1;
+	top: 70px;
+	left: 350px;
+	}
+#humidity{
+	position: absolute;
+	z-index: 1;
+	top: 70px;
+	left: 530px;
+	}
+#teandhu{
+	position: absolute;
+	z-index: 1;
+	left: 418px;
+	}
+#led1{
+	position: absolute;
+	z-index: 1;
+	top: 81px;
+	left: 213px;
+	}
+#led2{
+	position: absolute;
+	z-index: 1;
+	top: 123px;
+	left: 213px;
+	}
+</style>
+<body>
+<form method="post">
+<div id="teandhu">
+<p><button name="teandhu" value="1">刷新当前温度湿度</button></p>
+</div>
+<h1>GPIO操作</h1>
+<p>
+<button name="io1" value="1">GPIO1 OPEN</button>
+<button name="io1" value="0">GPIO1 CLOSE</button>
+<div id='led1'>
+{% if led1=='1' %}
+<img src="./static/images/led1o.jpg" />
+	</iframe>
+{% else %}
+<img src="./static/images/led1c.jpg" />
+{% endif %}
+</div>
+</p>
+<p>
+<button id="io2o" name="io2" value="1">GPIO2 OPEN</button>
+<button id="io2c" name="io2" value="0">GPIO2 CLOSE</button>
+<div id='led2'>
+{% if led2=='1' %}
+<img src="./static/images/led2o.jpg" />
+	</iframe>
+{% else %}
+<img src="./static/images/led2c.jpg" />
+{% endif %}
+</div>
+</p>
+
+<h1>摄像头操作</h1>
+<p><button id="turnl" name="yuntai" value="1">云台左转</button>
+<button id="turnr" name="yuntai" value="2">云台右转</button>
+</p>
+<p><button id="so" name="sopen" value="1">开启摄像头</button></p>
+<p><button id="sc" name="sopen" value="0">关闭摄像头</button></p>
+<p><button id="p" name="photo" value="1">一键拍照</button></p>
+
+<h1>其他</h1>
+<p><button id="copy" name="qita" value="1">拷贝图像到U盘</button></p>
+<p><button id="reboot" name="qita" value="2">重启系统</button>
+<button id="shutoff" name="qita" value="3">关闭系统</button></p>
+
+
+
+</form>
+<div id="temperature">
+<table width="89" border="1">
+  <caption>
+    温度（℃）
+  </caption>
+  <tr>
+    <th scope="row"><div id=humone>{{temperature}}</div></th>
+  </tr>
+</table>
+</div>
+<div id="humidity">
+<table width="89" border="1">
+  <caption>
+    湿度（RH）
+  </caption>
+  <tr>
+    <th scope="row"><div id=humone>{{humidity}}</div></th>
+  </tr>
+</table>
+</div>
+<div id='image' >
+{% if sopen=='1' %}
+	<iframe src="http://192.168.191.20:8081" id="theframe" name="imagecatch" width="200" height="200" frameborder="0" marginheight="0" marginwidth="0" scrolling="no">;
+	若无法正常显示图像，请使用火狐（Firefox）浏览器登录使用
+	</iframe>
+{% else %}
+	<p>请点击“开启摄像头”按钮</p>
+	<p>若无法正常显示图像</p>
+	<p>请使用火狐（Firefox）浏览器登录使用</p>
+{% endif %}
+</div>
+</body>
+</html>

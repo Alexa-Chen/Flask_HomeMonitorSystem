@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Raspberry Pi监控系统</title>
+	<meta  name="author" content="lz">
+<style type="text/css">
+#login1 {
+		font-size:50px;
+		color:#3F0;
+		text-shadow:   0 0 5px #99FFFF, 0 0 15px #99FFFF, 0 0 25px #99FFFF;
+         }  	 
+#div1{
+    position:fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    z-index:-1;
+	}
+#div1 > img {
+    height:100%;
+    width:100%;
+    border:0;
+			}
+#user{
+	color:#FFF;
+
+	}
+#secret{
+	color:#FFF;
+	
+	}
+
+.app-location {
+    width: 13%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 4em;
+	margin-top:100px;
+}
+#message{
+	color:#FFF;
+}
+</style>
+
+</head>
+<body>
+<div id='div1'><img src="./static/images/background.jpg" /></div>
+<div id='login1' align="center">欢迎使用Raspberry Pi监控系统</div>
+<div class="app-location">
+<form id='login' method="post">
+<p><div id='user'>账 号<input type="text" name="user"></div></p>
+<p>&nbsp;</p>
+<p><div id='secret'>密 码<input type="password" name="password"></div></p>
+<div id='botton' align="center">
+<input type="submit" value="登录" />
+<input type="reset" value="重置" />
+</div>
+</form>
+</div>
+<div id='message'>
+{% extends "message.html" %}
+</div>
+</body>
+</html>
